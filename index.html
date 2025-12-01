@@ -10,6 +10,9 @@
             background: #F1F6F9;
         }
 
+        section{
+            height: 100px;
+        }
         .banner {
             width: 100%;
             height: 100vh;
@@ -31,7 +34,8 @@
             transition: 2s;
         }
 
-        .banner:hover > .slider{
+        .banner:hover>.slider {
+            transform: perspective(1000px) rotateX(-12deg) rotateY(0deg);
             animation: autoRun;
             animation-play-state: paused;
         }
@@ -43,12 +47,13 @@
             transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(500px);
         }
 
-        .item:hover{
+        .item:hover {
             translate: 0px -10px 0px;
             transition: 2s;
             animation: float 4s infinite;
         }
-        .item:hover > img{
+
+        .item:hover>img {
             filter: brightness(0.7);
         }
 
@@ -62,14 +67,16 @@
 
 
         @keyframes float {
-            0%{
-                 translate: 0px 0px 0px;
+            0% {
+                translate: 0px 0px 0px;
             }
-            50%{
-                 translate: 0px -10px 0px;
+
+            50% {
+                translate: 0px -10px 0px;
             }
-             100%{
-                 translate: 0px 0px 0px;
+
+            100% {
+                translate: 0px 0px 0px;
             }
         }
 
@@ -88,7 +95,9 @@
 
 <body>
 
+    <section>
 
+    </section>
     <div class="banner">
         <div class="slider" style="--quantity: 10 ;">
             <div class="item" style="--position: 1"><img src="Cards/1.png" alt=""></div>
@@ -103,26 +112,36 @@
             <div class="item" style="--position: 10"><img src="Cards/10.png" alt=""></div>
         </div>
     </div>
+    <section>
 
-   <script>
-    const slider = document.querySelector('.slider');
-    const items = document.querySelectorAll('.item');
-    const quantity = 10;
-    let angle = 0;
+    </section>
 
-    function rotateTo(position) {
-        angle = -(position - 1) * (360 / quantity);
-        slider.style.transform =
-            `perspective(1000px) rotateX(-13deg) rotateY(${angle}deg)`;
-    }
+    <script>
+        const slider = document.querySelector('.slider');
+        const items = document.querySelectorAll('.item');
+        const banner = document.querySelector('.banner');
+        const quantity = 10;
+        let angle = 0;
+        let isHovering = false;
 
-    items.forEach(item => {
-        item.addEventListener('click', () => {
-            const position = parseInt(item.style.getPropertyValue('--position'));
-            rotateTo(position);
+        function rotateTo(position) {
+            angle = -(position - 1) * (360 / quantity);
+            slider.style.transform = `perspective(1000px) rotateX(-13deg) rotateY(${angle}deg)`;
+        }
+        
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                const position = parseInt(item.style.getPropertyValue('--position'));
+                rotateTo(position);
+
+            });
         });
-    });
-</script>
+
+
+
+
+
+    </script>
 
 </body>
 

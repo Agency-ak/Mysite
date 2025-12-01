@@ -132,7 +132,7 @@
     <section>
         <h1>Click On Cards</h1>
     </section>
-    <section>
+ 
         <div class="banner">
             <div class="slider" style="--quantity: 10 ;">
                 <div class="item" style="--position: 1"><img src="Cards/1.png" alt=""></div>
@@ -147,7 +147,7 @@
                 <div class="item" style="--position: 10"><img src="Cards/10.png" alt=""></div>
             </div>
         </div>
-    </section>
+   
 
     <section>
 
@@ -180,12 +180,12 @@
 
         let rightDrag = false;
         let lastY = 0;
-        let xAngle = -12; // current X tilt angle
+        let xAngle = -12; 
 
-        // Disable right-click menu
+ 
         document.addEventListener("contextmenu", e => e.preventDefault());
 
-        // Start drag
+
         slider.addEventListener("mousedown", (e) => {
             if (e.button === 2) {
                 e.preventDefault();
@@ -194,23 +194,23 @@
             }
         });
 
-        // End drag
+
         document.addEventListener("mouseup", () => {
             rightDrag = false;
         });
 
-        // Dragging movement
+      
         slider.addEventListener("mousemove", (e) => {
             if (!rightDrag) return;
 
-            // How much the mouse moved since last event
+          
             let diff = e.clientY - pointY;
             pointY = e.clientY;
 
-            // Add diff to X angle
+           
             xAngle += diff / 10 ;
 
-            // Apply new transform with existing Y rotation
+           
             slider.style.transform =
                 `perspective(1000px) rotateX(${-xAngle}deg) rotateY(${angle}deg)`;
         });

@@ -161,6 +161,7 @@
         let angle = 0;
         let isHovering = false;
         let angleVariable = document.documentElement;
+        let clickSound = new Audio("audio/click4.mp3");
 
 
 
@@ -171,6 +172,9 @@
 
         items.forEach(item => {
             item.addEventListener('click', () => {
+                clickSound.currentTime = 0;
+                clickSound.play();
+                clickSound = new Audio("audio/click4.mp3");
                 slider.style.animation = 'none';
                 const position = parseInt(item.style.getPropertyValue('--position'));
                 rotateTo(position);
@@ -221,7 +225,7 @@
 
             xAngle += diff * 0.1;
 
-
+            clickSound = new Audio("audio/click6.mp3");
             slider.style.transform =
                 `perspective(1000px) rotateX(${-xAngle}deg) rotateY(${angle}deg)`;
         });
